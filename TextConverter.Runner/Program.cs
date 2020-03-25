@@ -37,8 +37,14 @@ namespace TextConverter.Runner
                     return;
                 }
 
-                // Assuming input contains only lowercase letters. Otherwise one more check is required.
-                input[i] = line;
+                if (line.All(x => (x >= 'a' && x <= 'z') || x == ' '))
+                {
+                    input[i] = line;
+                }
+                else
+                {
+                    throw new ArgumentException("Only lowercase english letters or spaces are allowed");
+                }
             }
 
             ProcessInput(input);
@@ -48,7 +54,7 @@ namespace TextConverter.Runner
         {
             var textConverter = new TextUtils.TextConverter();
 
-            foreach (var result in input.Select((s, i) => $"Case #{i+1}: {textConverter.Convert(s)}"))
+            foreach (var result in input.Select((s, i) => $"Case #{i + 1}: {textConverter.Convert(s)}"))
             {
                 Console.WriteLine(result);
             }

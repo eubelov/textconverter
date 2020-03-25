@@ -32,7 +32,7 @@ namespace TextUtils
             foreach (var c in input)
             {
                 var index = Math.Max(c - 'a' + 1, 0);
-                var currentKey = (int)char.GetNumericValue(NumPad[index][0]);
+                var currentKey = NumPad[index][0] - '0';
 
                 if (lastKey == Math.Max(currentKey, 0))
                 {
